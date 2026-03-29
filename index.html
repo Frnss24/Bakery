@@ -22,9 +22,6 @@
                 <a href="#about" class="nav-link">Tentang</a>
                 <a href="#contact" class="nav-link">Kontak</a>
             </nav>
-            <div class="cart-icon" onclick="toggleCart()">
-                🛒 <span class="cart-count">0</span>
-            </div>
         </div>
     </header>
 
@@ -103,28 +100,6 @@
             </div>
         </div>
     </section>
-
-    <!-- Shopping Cart Modal -->
-    <div class="cart-modal" id="cartModal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h2>Keranjang Belanja</h2>
-                <button class="close-btn" onclick="toggleCart()">&times;</button>
-            </div>
-            <div class="cart-items" id="cartItems">
-                <p class="empty-cart">Keranjang belanja kosong</p>
-            </div>
-            <div class="cart-summary">
-                <div class="summary-row">
-                    <span>Total</span>
-                    <span id="totalPrice">Rp 0</span>
-                </div>
-                <button class="btn-primary" style="width: 100%; margin-top: 20px;">
-                    Checkout
-                </button>
-            </div>
-        </div>
-    </div>
 
     <!-- Footer -->
     <footer class="footer">

@@ -75,7 +75,6 @@ const products = [
 ];
 
 // State
-let cart = [];
 let currentFilter = 'all';
 
 // Initialize
@@ -109,9 +108,6 @@ function displayProducts(productsToDisplay) {
                 <div class="product-rating">${product.rating}</div>
                 <div class="product-footer">
                     <span class="product-price">Rp ${product.price.toLocaleString('id-ID')}</span>
-                    <button class="btn-add-cart" onclick="addToCart(${product.id})">
-                        + Beli
-                    </button>
                 </div>
             </div>
         `;
@@ -146,105 +142,6 @@ function getCategoryLabel(category) {
         'premium': '👑 Premium'
     };
     return labels[category] || category;
-}
-
-// Add to Cart
-function addToCart(productId) {
-    const product = products.find(p => p.id === productId);
-    
-    const existingItem = cart.find(item => item.id === productId);
-    
-    if (existingItem) {
-        existingItem.quantity++;
-    } else {
-        cart.push({
-            ...product,
-            quantity: 1
-        });
-    }
-
-    updateCart();
-    showNotification(`${product.name} ditambahkan ke keranjang!`);
-}
-
-// Remove from Cart
-function removeFromCart(productId) {
-    cart = cart.filter(item => item.id !== productId);
-    updateCart();
-}
-
-// Update Cart Display
-function updateCart() {
-    const cartItems = document.getElementById('cartItems');
-    const totalPrice = document.getElementById('totalPrice');
-    const cartCount = document.querySelector('.cart-count');
-
-    // Update count
-    const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
-    cartCount.textContent = totalItems;
-
-    // Update items display
-    if (cart.length === 0) {
-        cartItems.innerHTML = '<p class="empty-cart">Keranjang belanja kosong</p>';
-        totalPrice.textContent = 'Rp 0';
-        return;
-    }
-
-    cartItems.innerHTML = cart.map(item => `
-        <div class="cart-item">
-            <div class="cart-item-info">
-                <h4>${item.name}</h4>
-                <p>Qty: ${item.quantity}</p>
-                <p class="cart-item-price">Rp ${(item.price * item.quantity).toLocaleString('id-ID')}</p>
-            </div>
-            <button class="remove-btn" onclick="removeFromCart(${item.id})">✕</button>
-        </div>
-    `).join('');
-
-    // Update total
-    const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-    totalPrice.textContent = 'Rp ' + total.toLocaleString('id-ID');
-}
-
-// Toggle Cart Modal
-function toggleCart() {
-    const cartModal = document.getElementById('cartModal');
-    cartModal.style.display = cartModal.style.display === 'none' ? 'flex' : 'none';
-}
-
-// Close cart when clicking outside
-document.addEventListener('click', function(event) {
-    const cartModal = document.getElementById('cartModal');
-    const cartIcon = document.querySelector('.cart-icon');
-    
-    if (!cartModal.contains(event.target) && !cartIcon.contains(event.target)) {
-        cartModal.style.display = 'none';
-    }
-});
-
-// Show Notification
-function showNotification(message) {
-    const notification = document.createElement('div');
-    notification.style.cssText = `
-        position: fixed;
-        bottom: 30px;
-        right: 30px;
-        background: #2ecc71;
-        color: white;
-        padding: 16px 24px;
-        border-radius: 8px;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-        font-size: 14px;
-        z-index: 2000;
-        animation: slideInUp 0.3s ease;
-    `;
-    notification.textContent = message;
-    document.body.appendChild(notification);
-
-    setTimeout(() => {
-        notification.style.animation = 'slideOutDown 0.3s ease';
-        setTimeout(() => notification.remove(), 300);
-    }, 3000);
 }
 
 // Setup Scroll Navigation
@@ -291,30 +188,3 @@ function setupScrollNavigation() {
         });
     });
 }
-
-// Add keyframes animation
-const style = document.createElement('style');
-style.textContent = `
-    @keyframes slideInUp {
-        from {
-            transform: translateY(100px);
-            opacity: 0;
-        }
-        to {
-            transform: translateY(0);
-            opacity: 1;
-        }
-    }
-
-    @keyframes slideOutDown {
-        from {
-            transform: translateY(0);
-            opacity: 1;
-        }
-        to {
-            transform: translateY(100px);
-            opacity: 0;
-        }
-    }
-`;
-document.head.appendChild(style);
