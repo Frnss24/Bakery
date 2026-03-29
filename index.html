@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Franzzz Bakery - Katalog Kue</title>
+    <link rel="icon" type="image/png" href="ChatGPT Image Mar 29, 2026, 04_11_18 PM.png">
+    <link rel="apple-touch-icon" href="ChatGPT Image Mar 29, 2026, 04_11_18 PM.png">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <img src="ChatGPT Image Mar 29, 2026, 04_11_18 PM.png" alt="Logo Franzzz Bakery">
+                <span>Franzzz Bakery</span>
+            </div>
+            <nav class="nav">
+                <a href="#home" class="nav-link active">Beranda</a>
+                <a href="#products" class="nav-link">Katalog</a>
+                <a href="#about" class="nav-link">Tentang</a>
+                <a href="#contact" class="nav-link">Kontak</a>
+            </nav>
+            <div class="cart-icon" onclick="toggleCart()">
+                🛒 <span class="cart-count">0</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <h1>Kue Berkualitas Premium</h1>
+            <p>Dibuat dengan bahan terbaik untuk momen spesialmu</p>
+            <button class="btn-primary" onclick="document.getElementById('products').scrollIntoView({behavior: 'smooth'})">
+                Lihat Katalog
+            </button>
+        </div>
+    </section>
+
+    <!-- Products Section -->
+    <section class="products" id="products">
+        <div class="container">
+            <h2 class="section-title">Katalog Kue Kami</h2>
+            
+            <div class="filter-buttons">
+                <button class="filter-btn active" onclick="filterProducts('all')">Semua</button>
+                <button class="filter-btn" onclick="filterProducts('chocolate')">Cokelat</button>
+                <button class="filter-btn" onclick="filterProducts('vanilla')">Vanilla</button>
+                <button class="filter-btn" onclick="filterProducts('fruit')">Buah</button>
+                <button class="filter-btn" onclick="filterProducts('premium')">Premium</button>
+            </div>
+
+            <div class="products-grid" id="productsGrid">
+                <!-- Products akan di-load dari JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about" id="about">
+        <div class="container">
+            <h2 class="section-title">Tentang Kami</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <h3>Kualitas Terbaik, Harga Terjangkau</h3>
+                    <p>Franzzz Bakery telah melayani pelanggan setia selama lebih dari 5 tahun. Kami menggunakan bahan-bahan pilihan berkualitas tinggi, tanpa pengawet buatan, dan setiap kue dibuat segar setiap hari.</p>
+                    <ul class="features">
+                        <li>✓ Bahan Premium Berkualitas</li>
+                        <li>✓ Dibuat Segar Setiap Hari</li>
+                        <li>✓ Tanpa Pengawet Buatan</li>
+                        <li>✓ Harga Terjangkau</li>
+                    </ul>
+                </div>
+                <div class="about-image">
+                    <img src="534987373_2961474474036428_4875796947855619865_n.jpg" alt="Tentang Franzzz Bakery">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+        <div class="container">
+            <h2 class="section-title">Hubungi Kami</h2>
+            <div class="contact-grid">
+                <div class="contact-card">
+                    <div class="contact-icon">📱</div>
+                    <h3>WhatsApp</h3>
+                    <p><a class="map-link" href="https://wa.me/6282260452608" target="_blank" rel="noopener noreferrer">+62 822-6045-2608</a></p>
+                </div>
+                <div class="contact-card">
+                    <div class="contact-icon">📍</div>
+                    <h3>Alamat</h3>
+                    <p><a class="map-link" href="https://maps.app.goo.gl/pVXBttLpQnCrMH4J6" target="_blank" rel="noopener noreferrer">Rumah Frans</a></p>
+                </div>
+                <div class="contact-card">
+                    <div class="contact-icon">⏰</div>
+                    <h3>Jam Operasional</h3>
+                    <p>06:00 - 21:00 (Setiap Hari)</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Shopping Cart Modal -->
+    <div class="cart-modal" id="cartModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Keranjang Belanja</h2>
+                <button class="close-btn" onclick="toggleCart()">&times;</button>
+            </div>
+            <div class="cart-items" id="cartItems">
+                <p class="empty-cart">Keranjang belanja kosong</p>
+            </div>
+            <div class="cart-summary">
+                <div class="summary-row">
+                    <span>Total</span>
+                    <span id="totalPrice">Rp 0</span>
+                </div>
+                <button class="btn-primary" style="width: 100%; margin-top: 20px;">
+                    Checkout
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>&copy; 2024 Franzzz Bakery. All rights reserved. | Dibuat dengan ❤️</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
